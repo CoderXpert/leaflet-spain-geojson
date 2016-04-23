@@ -8,6 +8,7 @@ var httpServer = http.createServer(app);
 // // Static Files
 app.use("/app.js", express.static(__dirname + '/client/app.js'));
 app.use("/barrios_madrid.js", express.static(__dirname + '/datasets/barrios_madrid.js'));
+app.use("/marker_custo.png", express.static(__dirname + '/marker_custo.png'));
 // app.use("/spain-provinces.js", express.static(__dirname + '/datasets/spain-provinces.js'));
 app.use("/markers.js", express.static(__dirname + '/datasets/markers.js'));
 // app.use("/style.css", express.static(__dirname + '/client/style.css'));
@@ -25,7 +26,16 @@ app.get('/', function(req, res){
 
 app.get('/spain-provinces', function(req, res){
   // debugger
-  fs.readFile(__dirname + '/datasets/barrios_madrid.geojson','utf8', function (err, data) {
+  fs.readFile(__dirname + '/datasets/spain-provinces.geojson','utf8', function (err, data) {
+    if (err) throw err;
+    // console.log(data);
+    res.send(data)
+  });
+});
+
+app.get('/markers', function(req, res){
+  // debugger
+  fs.readFile(__dirname + '/datasets/markers.json','utf8', function (err, data) {
     if (err) throw err;
     // console.log(data);
     res.send(data)
