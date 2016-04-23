@@ -1,0 +1,24 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ATT1": "azerty",
+        "ATT2": "qsdf"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.70379,
+          40.416775
+        ]
+      },
+      "properties": {
+        "Municipio": "Madrid",
+        "Estado": "España",
+        "Comunidad": "Comunidad Autónoma de Madrid"
+      }
+    }
+  ]
+}
