@@ -7,7 +7,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // load GeoJSON from an external file
-$.getJSON("spain-provinces.geojson",function(data){
+$.getJSON("spain-provinces",function(data){
 // $.getJSON("barrios_madrid.geojson",function(data){
   // add GeoJSON layer to the map once the file is loaded
   L.geoJson(data,{

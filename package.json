@@ -1,0 +1,22 @@
+{
+  "name": "leaflet-spain-geojson",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ackuser/leaflet-spain-geojson.git"
+  },
+  "author": "Karim",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/ackuser/leaflet-spain-geojson/issues"
+  },
+  "homepage": "https://github.com/ackuser/leaflet-spain-geojson#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
