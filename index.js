@@ -33,6 +33,15 @@ app.get('/spain-provinces', function(req, res){
   });
 });
 
+app.get('/barrios_madrid', function(req, res){
+  // debugger
+  fs.readFile(__dirname + '/datasets/barrios_madrid.geojson','utf8', function (err, data) {
+    if (err) throw err;
+    // console.log(data);
+    res.send(data)
+  });
+});
+
 app.get('/markers', function(req, res){
   // debugger
   fs.readFile(__dirname + '/datasets/markers.json','utf8', function (err, data) {

@@ -10,7 +10,7 @@ L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 $.getJSON("spain-provinces",function(data){
   L.geoJson(data,{
     style: function(feature){
-      feature.properties.density = Math.floor(Math.random() * 100) + 0  
+      feature.properties.density = Math.floor(Math.random() * 100) + 0
       var fillColor,
       density = feature.properties.density;
       if ( density > 80 ) fillColor = "#006837";
@@ -21,12 +21,27 @@ $.getJSON("spain-provinces",function(data){
       else fillColor = "#f7f7f7";  // no data
       return { color: "#999", weight: 1, fillColor: fillColor, fillOpacity: .6 };
     },
-    onEachFeature: function onEachFeature(feature, layer) {
-      layer.bindPopup(feature.properties.name + '<br/>');
-    }
+    onEachFeature: onEachFeature
   }).addTo(map);
 });
 
+
+// load GeoJSON from an external file
+$.getJSON("barrios_madrid",function(data){
+  L.geoJson(data,{
+    onEachFeature: onEachFeature
+  }).addTo(map);
+});
+
+function onEachFeature(feature, layer) {
+  var properties = feature.properties
+  if (properties.nombre) {
+    layer.bindPopup(properties.nombre + '<br/>');
+  }
+  else if (properties.name) {
+    layer.bindPopup(properties.name + '<br/>');
+  }
+};
 
 var smallIcon = new L.Icon({
   iconUrl: 'marker_custo.png',
@@ -48,9 +63,6 @@ $.getJSON('markers', function(data) {
         icon: smallIcon
       });
     },
-    onEachFeature: function onEachFeature(feature, layer) {
-      console.log("FEATURES " + feature.properties);
-      layer.bindPopup(feature.properties.Comunidad + '<br/><a target="_blank" href="https://es.wikipedia.org/wiki/Madrid">Madrid</a>');
-    }
+    onEachFeature: onEachFeature
   }).addTo(map);
 });
