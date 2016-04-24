@@ -39,7 +39,9 @@ function onEachFeature(feature, layer) {
     layer.bindPopup(properties.nombre + '<br/>');
   }
   else if (properties.name) {
-    layer.bindPopup(properties.name + '<br/>');
+    setTimeout(function () {
+      layer.bindPopup(properties.name + '<br/>');
+    }, 10);
   }
 };
 
