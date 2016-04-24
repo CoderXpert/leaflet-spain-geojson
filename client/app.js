@@ -46,7 +46,7 @@ function onEachFeature(feature, layer) {
 };
 
 var smallIcon = new L.Icon({
-  iconUrl: 'marker_custo.png',
+  iconUrl: 'http://img1.meetupstatic.com/img/94156887029318281691566697/logo.svg',
   iconRetinaUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-icon-2x.png',
   iconSize:    [25, 41],
   iconAnchor:  [12, 41],
@@ -61,10 +61,24 @@ $.getJSON('markers', function(data) {
   L.geoJson(data, {
     pointToLayer: function(feature, latlng) {
       console.log(latlng, feature);
-      return L.marker(latlng, {
-        icon: smallIcon
-      });
+      return L.marker(latlng
+        //,
+      //   {
+      //   icon: smallIcon
+      // }
+    );
     },
     onEachFeature: onEachFeature
   }).addTo(map);
+});
+
+
+$.getJSON('meetupcities', function(data){
+  data.results.forEach(function(entry) {
+      console.log(entry)
+      L.marker([entry.lat, entry.lon],{
+        icon: smallIcon
+      }).addTo(map);
+  });
+  console.log(data);
 });

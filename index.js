@@ -51,6 +51,35 @@ app.get('/markers', function(req, res){
   });
 });
 
+// Get JSON with meetup cities from the MEETUP API
+app.get('/meetupcities', function(req, res){
+//The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
+var options = {
+  host: 'api.meetup.com',
+  path: '/2/cities?country=ES'
+};
+
+callback = function(response) {
+  var json = '';
+
+  //another chunk of data has been recieved, so append it to `str`
+  response.on('data', function (chunk) {
+    json += chunk;
+  });
+
+  //the whole response has been recieved, so we just print it out here
+  response.on('end', function () {
+    // console.log(JSON.parse(str));
+    //VALIDATE FIRST JSON
+    res.setHeader('Content-Type', 'application/json');
+    res.json(JSON.parse(json));
+
+  });
+}
+
+http.request(options, callback).end();
+});
+
 // Route data to retrieve dataset
 app.get('/data', function (req, res) {
   var start = new Date()
