@@ -41,7 +41,7 @@ function onEachFeature(feature, layer) {
   else if (properties.name) {
     setTimeout(function () {
       layer.bindPopup(properties.name + '<br/>');
-    }, 10);
+    }, 2000);
   }
 };
 
@@ -75,10 +75,12 @@ $.getJSON('markers', function(data) {
 
 $.getJSON('meetupcities', function(data){
   data.results.forEach(function(entry) {
-      console.log(entry)
-      L.marker([entry.lat, entry.lon],{
+      // console.log(entry)
+      var marker = L.marker([entry.lat, entry.lon],{
         icon: smallIcon
-      }).addTo(map);
+      });
+      marker.bindPopup(JSON.stringify(entry));
+      marker.addTo(map);
   });
   console.log(data);
 });
